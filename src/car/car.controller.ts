@@ -21,7 +21,9 @@ export class CarController {
   }
 
   @Post()
-  async createCar(@Body() car: CreateCarDto): Promise<Car> {
+  async createCar(
+    @Body() car: CreateCarDto,
+  ): Promise<Car> {
     return this.carService.createCar(car);
   }
   @Put(':id')
@@ -33,7 +35,9 @@ export class CarController {
   }
 
   @Delete(':id')
-  async cdeleteCar(@Param('id') id: string): Promise<Car> {
+  async cdeleteCar(
+    @Param('id') id: string,
+  ): Promise<Car> {
     return this.carService.deleteCar(id);
   }
 }

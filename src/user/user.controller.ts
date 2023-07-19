@@ -12,7 +12,6 @@ import { User } from './schemas/user.schema';
 import { CreateUserDto } from './dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Car } from 'src/car/schemas/car.schema';
-import { CarService } from 'src/car/car.service';
 
 @Controller('users')
 export class UserController {
@@ -22,13 +21,17 @@ export class UserController {
   async getAllUser(): Promise<User[]> {
     return this.userService.getAllUser();
   }
-  // @Get(':id')
-  // async getUser(@Param('id') id: string): Promise<User> {
-  //   return this.userService.getUser(id);
-  // }
+  @Get(':id')
+  async getUser(
+    @Param('id') id: string,
+  ): Promise<User> {
+    return this.userService.getUser(id);
+  }
 
   @Post()
-  async createUser(@Body() user: CreateUserDto): Promise<User> {
+  async createUser(
+    @Body() user: CreateUserDto,
+  ): Promise<User> {
     return this.userService.createUser(user);
   }
 
@@ -50,7 +53,9 @@ export class UserController {
   }
 
   @Get('user/:userId')
-  async getCarByUser(@Param('userId') id: string): Promise<Car[]> {
+  async getCarByUser(
+    @Param('userId') id: string,
+  ): Promise<Car[]> {
     return this.userService.getCar(id);
   }
 }

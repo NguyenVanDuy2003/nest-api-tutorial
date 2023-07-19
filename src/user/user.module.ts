@@ -22,5 +22,6 @@ import { CarSchema } from 'src/car/schemas/car.schema';
   ],
   controllers: [UserController],
   providers: [UserService],
+  exports: [UserService],
 })
 export class UserModule {}

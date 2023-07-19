@@ -5,7 +5,10 @@ import { Car } from './schemas/car.schema';
 
 @Injectable()
 export class CarService {
-  constructor(@InjectModel(Car.name) private carModel: mongoose.Model<Car>) {}
+  constructor(
+    @InjectModel(Car.name)
+    private carModel: mongoose.Model<Car>,
+  ) {}
   async getAllCar(): Promise<Car[]> {
     const Cars = await this.carModel.find();
     return Cars;
@@ -16,16 +19,25 @@ export class CarService {
     return Car;
   }
 
-  async updateCar(id: string, car: Car): Promise<Car> {
-    const Car = await this.carModel.findByIdAndUpdate(id, car, {
-      new: true,
-      runValidators: true,
-    });
+  async updateCar(
+    id: string,
+    car: Car,
+  ): Promise<Car> {
+    const Car =
+      await this.carModel.findByIdAndUpdate(
+        id,
+        car,
+        {
+          new: true,
+          runValidators: true,
+        },
+      );
     return Car;
   }
 
   async deleteCar(id: string): Promise<Car> {
-    const Car = await this.carModel.findByIdAndDelete(id);
+    const Car =
+      await this.carModel.findByIdAndDelete(id);
     return Car;
   }
 }
