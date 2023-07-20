@@ -6,7 +6,6 @@ import {
   Request,
 } from '@nestjs/common';
 import { AppService } from './app.service';
-import { LocalAuthGuard } from './auth/graud/jwt.guard';
 
 @Controller()
 export class AppController {
